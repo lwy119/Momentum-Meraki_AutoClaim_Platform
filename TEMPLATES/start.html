@@ -1,0 +1,55 @@
+<!-- This login page offers various input field to gather global information like API Keys,
+    login name or password in advance of starting the demo.-->
+
+    {% extends "masterPage.html" %}
+
+    {% block content %}
+
+    <div class="row mt-huge">
+            <!-- Left Rail -->
+            <div class="col-xl-2 col-md-2 col-2">
+            </div>
+
+            <!-- Middle Rail -->
+            <div class="col-xl-3 col-md-3 col-3">
+                <div class="section">
+                    <div class="panel panel--loose panel--raised base-margin-bottom base-margin-top text-center">
+                        <a href="/corporate/register">
+                            <div class="base-margin-bottom base-margin-top text-center">
+                                <img class="logo" src="{{ url_for('static', filename='IMAGES/Customer_Logo.png')}}" />
+                                <p class="base-margin-bottom base-margin-top">Customer</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-2 col-md-2 col-2">
+            </div>
+
+            <div class="col-xl-3 col-md-3 col-3">
+                <div class="section">
+                    <div class="panel panel--loose panel--raised base-margin-bottom base-margin-top text-center">
+                        <a href="/franchisee">
+                            <div class="base-margin-bottom base-margin-top text-center">
+                                <img class="logo" src="{{ url_for('static', filename='IMAGES/Franchisee_Logo.png')}}" />
+                                <p class="base-margin-bottom base-margin-top">Franchisee</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Right Rail -->
+    </div>
+    <div class="row">
+        <div class="col-xl-4 col-md-4 col-4">
+        </div>
+
+        <div class="col-xl-4 col-md-4 col-4">
+            <!--Alert for error message-->
+            <!--PASS INFO: Pass the following information to the template: error=True/False ; errormessage="xxx" ; errorcode=xxx-->
+            {% include "alert.html" %}
+        </div>
+    </div>
+    {%  endblock %}

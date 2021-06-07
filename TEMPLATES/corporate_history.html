@@ -1,0 +1,84 @@
+
+{% extends "masterPage.html" %}
+
+{% block content %}
+    <div class="row">
+
+        {% include "menu.html" %}
+
+
+        <div class="col-12 col-lg-9 col-xl-10">
+            <div class="section">
+                <!--Alert for error message-->
+                <!--PASS INFO: Pass the following information to the template: error=True/False ; errormessage="xxx" ; errorcode=xxx-->
+                {% include "alert.html" %}
+            </div>
+
+            <div class="section">
+                <div class="flex-center-vertical">
+                    <h2>Franchisee Registration History</h2>
+                    <!--<div class="flex-fluid text-right">
+                        <p class="lead hidden-sm-down">Showing 1-12 of 192 Devices</p>
+                    </div>-->
+                </div>
+            </div>
+            <div class="section">
+                <!--CUSTOMIZE: Change table content as needed -->
+                <div class="responsive-table">
+                    <table class="table table--lined table--selectable fold-table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Store Number</th>
+                                <th class="text-center">Store / Network Name</th>
+                                <th class="text-center">Organization</th>
+                                <th class="text-center">Template</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Loading Date</th>
+                                <th class="text-center">Processed Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for franchisee in franchisees %}
+                                <tr class="view">
+                                    <td class="text-center">{{franchisee.store_number}}</td>
+                                    <td class="text-center">{{franchisee.store_name}}</td>
+                                    <td class="text-center">
+                                        {% if franchisee.organzation_name %}
+                                            {{franchisee.organzation_name}}
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center">
+                                        {% if franchisee.template_name %}
+                                            {{franchisee.template_name}}
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center">
+                                        {% if franchisee.is_processed == True %}
+                                            Processed
+                                            <span class="icon-check-outline text-success small-margin-left"></span>
+                                        {% else %}
+                                            Unprocessed
+                                            <span class="icon-error-outline text-danger small-margin-left"></span>
+                                    {% endif %}
+                                    </td>
+                                    <td class="text-center">
+                                        {% if franchisee.submit_date %}
+                                            {{franchisee.submit_date.strftime("%Y-%m-%d %H:%M:%S")}}
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center">
+                                        {% if franchisee.process_date %}
+                                            {{franchisee.process_date.strftime("%Y-%m-%d %H:%M:%S")}}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                     <!--CUSTOMIZE END-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+{%  endblock %}

@@ -1,0 +1,61 @@
+<!-- Template page: This settings page offers various input field to gather settings information -->
+
+    {% extends "masterPage.html" %}
+
+    {% block content %}
+    <div class="row">
+
+            <!-- Left Rail -->
+            <div class="col-3 col-xl-3 col-md-3">
+            </div>
+
+            <!-- Middle Rail -->
+            <div class="col-6 col-xl-6 col-md-6">
+                <div class="section" >
+                    <div class="panel panel--loose panel--raised base-margin-bottom">
+                        <h2 class="subtitle">Franchisee Registration</h2>
+                        <hr>
+                        <form action="/franchisee" method="POST">
+                            <div class="section">
+
+                                <!--CUSTOMIZE: Text field section: Add or remove elements as needed.-->
+
+                                    <!--Value1 Field-->
+                                        <div class="form-group base-margin-bottom">
+                                            <div class="form-group__text">
+                                                <input id="store_name" name="store_name" type="text" required="">
+                                                <label for="store_name">Store Name</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group base-margin-bottom">
+                                            <div class="form-group__text">
+                                                <input id="order_number" name="order_number" type="text" required="">
+                                                <label for="order_number">Order Number</label>
+                                            </div>
+                                        </div>
+
+                                <!--CUSTOMIZE END-->
+
+                                <!-- Button area-->
+                                <div class="mt-small">
+                                    <input id="settings-submit" class="btn btn-primary" type="submit" value="Submit">
+                                    <span class="required-label pull-right">*required field</span>
+                                </div>
+                            </div>
+
+                        </form>
+
+                        <!--Alert for error message-->
+                            <!--PASS INFO: Pass the following information to the template: error=True/False ; errormessage="xxx" ; errorcode=xxx-->
+                            {% include "alert.html" %}
+
+                    </div>
+                </div>
+            </div>
+
+        <!-- Right Rail -->
+        <div class="col-0 col-xl-3 col-md-3">
+        </div>
+    </div>
+    {%  endblock %}

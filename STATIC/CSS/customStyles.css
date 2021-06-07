@@ -1,0 +1,44 @@
+.logo{
+    width: 300px;
+}
+
+.mt-huge{
+  margin-top: 120px;
+}
+
+.mt-small{
+  margin-top: 30px;
+}
+
+p{
+  font-size: 20px;
+}
+
+.hidden{
+  display: none;
+}
+
+.panel--white{
+  background-color: white !important;
+}
+
+.small-margin-left{
+  margin-left: 10px;
+}
+
+.viewbtn{
+  width: 100%;
+}
+
+.row-msg{
+  color: red;
+}
+
+.inline{
+  display: inline;
+}
+
+.selected a{
+    border-right-color: lightgreen !important;
+    background-color: black !important;
+}

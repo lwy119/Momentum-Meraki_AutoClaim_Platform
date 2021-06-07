@@ -1,0 +1,18 @@
+{% for model, serials in devices['models'].items() %}
+    <div class="col-xl-3 col-md-3 col-3 base-margin-top base-margin-bottom">
+        <div class="panel panel--bordered panel--raised panel--loose panel--white">
+            <div class="subtitle text-center">{{model}} x {{serials|length}}</div>
+            <div class="row text-center">
+                {% for serial in serials %}
+                    <div class="col-xl-6 col-md-6 col-6 text-center"><small>{{serial}}</small></div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endfor %}
+split
+<span class="badge badge--primary">{{devices['count']}}</span>
+split
+{% for config_template in config_templates %}
+    <option value='{{config_template.id}}'>{{config_template.name}}</option>
+{% endfor %}

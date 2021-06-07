@@ -1,0 +1,100 @@
+
+{% extends "masterPage.html" %}
+
+{% block content %}
+    <div class="row">
+
+        {% include "menu.html" %}
+
+
+        <div class="col-12 col-lg-9 col-xl-10">
+            <div class="section">
+                <!--Alert for error message-->
+                <!--PASS INFO: Pass the following information to the template: error=True/False ; errormessage="xxx" ; errorcode=xxx-->
+                {% include "alert.html" %}
+            </div>
+
+            <div class="section">
+                <div class="flex-center-vertical">
+                    <h2>Modify Franchisee Information</h2>
+                    <!--<div class="flex-fluid text-right">
+                        <p class="lead hidden-sm-down">Showing 1-12 of 192 Devices</p>
+                    </div>-->
+                </div>
+            </div>
+            <div class="section">
+                <!--CUSTOMIZE: Change table content as needed -->
+                <div class="responsive-table">
+                    <table class="table table--lined table--selectable fold-table">
+                      <thead>
+                          <tr>
+                              <th class="text-center">Original Store Number</th>
+                              <th class="text-center">Original Store / Network Name</th>
+                              <th class="text-center">New Store Number</th>
+                              <th class="text-center">New Store / Network Name</th>
+                              <th class="text-center">Submit</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          {% for franchisee in franchisees %}
+                              <tr class="view">
+                                  <td class="text-center old-store-number">{{franchisee.store_number}}</td>
+                                  <td class="text-center old-store-name">{{franchisee.store_name}}</td>
+                                  <td class="text-center new-store-number">
+                                      <div class="row">
+                                          <div class="col-8 offset-2">
+                                              <div class="form-group input--icon">
+                                                  <div class="form-group__text">
+                                                      <input type="text">
+                                                      <button type="button" class="link" tabindex="-1">
+                                                          <span class="icon-keyboard"></span>
+                                                      </button>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-2 flex-middle">
+                                              <span class="icon-check text-success hidden"></span>
+                                              <span class="icon-error text-danger hidden"></span>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  <td class="text-center new-store-name">
+                                      <div class="row">
+                                          <div class="col-8 offset-2">
+                                              <div class="form-group input--icon">
+                                                  <div class="form-group__text">
+                                                      <input type="text">
+                                                      <button type="button" class="link" tabindex="-1">
+                                                          <span class="icon-text"></span>
+                                                      </button>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-2 flex-middle">
+                                              <span class="icon-check text-success hidden"></span>
+                                              <span class="icon-error text-danger hidden"></span>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  <td class="text-center">
+                                      <button class="btn btn--circle btn--small btn--secondary confirm-modify small-margin-left">
+                                          <span class="icon-check"></span>
+                                      </button>
+                                      <div class="loading-dots loading-dots--secondary small-margin-left hidden" aria-label="Loading, please wait...">
+                                          <span></span>
+                                          <span></span>
+                                          <span></span>
+                                      </div>
+                                  </td>
+
+                              </tr>
+                          {% endfor %}
+                      </tbody>
+                    </table>
+                     <!--CUSTOMIZE END-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+{%  endblock %}

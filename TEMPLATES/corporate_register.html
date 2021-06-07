@@ -1,0 +1,156 @@
+
+{% extends "masterPage.html" %}
+
+{% block content %}
+    <div class="row">
+
+        {% include "menu.html" %}
+
+
+        <div class="col-12 col-lg-9 col-xl-10">
+            <div class="section">
+                <!--Alert for error message-->
+                <!--PASS INFO: Pass the following information to the template: error=True/False ; errormessage="xxx" ; errorcode=xxx-->
+                {% include "alert.html" %}
+            </div>
+
+            <div class="section">
+                <div class="flex-center-vertical">
+                    <h2>Register Franchisee</h2>
+                    <!--<div class="flex-fluid text-right">
+                        <p class="lead hidden-sm-down">Showing 1-12 of 192 Devices</p>
+                    </div>-->
+                </div>
+            </div>
+            <div class="section">
+                <!--CUSTOMIZE: Change table content as needed -->
+                <div class="responsive-table">
+                    <table class="table table--lined table--selectable fold-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="text-center">Store Number</th>
+                                <th class="text-center">Store Name</th>
+                                <th class="text-center">Order Number</th>
+                                <th class="text-center">Device Count</th>
+                                <th class="text-center">Organization</th>
+                                <th class="text-center">Template</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for franchisee in franchisees %}
+                                <tr class="view">
+                                    {% if franchisee.organzation_id %}
+                                        <td>
+                                            <div class="viewbtn">
+                                                <span class="icon-right-arrow-contained"></span>
+                                            </div>
+                                        </td>
+                                    {% else %}
+                                        <td class="view-btn">
+                                            <div class="viewbtn hidden">
+                                                <span class="icon-right-arrow-contained"></span>
+                                            </div>
+                                        </td>
+                                    {% endif %}
+                                    <td class="text-center store-number">{{franchisee.store_number}}</td>
+                                    <td class="text-center store-name">{{franchisee.store_name}}</td>
+                                    <td class="text-center order-number">{{franchisee.order_number}}</td>
+                                    <td class="text-center device-count">
+                                        {% if franchisee.organzation_id %}
+                                            <span class="badge badge--primary">{{devices[franchisee.order_number]['count']}}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center organization">
+                                        {% if franchisee.organzation_id %}
+                                            {{ orgs[franchisee.organzation_id] }}
+                                            <span class="icon-check text-success small-margin-left"></span>
+                                        {% else %}
+                                            <div class="form-group__text select">
+                                                <select>
+                                                    <option value="null">Select Organization</option>
+                                                    {% for org in orgs %}
+                                                        <option value='{{org}}'>{{orgs[org]}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <button class="btn btn--circle btn--small btn--secondary confirm-org small-margin-left">
+                                                    <span class="icon-check"></span>
+                                                </button>
+                                                <span class="icon-check text-success hidden"></span>
+                                                <div class="loading-dots loading-dots--secondary small-margin-left hidden" aria-label="Loading, please wait...">
+                                                    <span></span>
+                                                    <span></span>
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center config-template">
+                                        {% if franchisee.organzation_id %}
+                                            <div class="form-group__text select">
+                                                <select>
+                                                    <option value="null">Select Template</option>
+                                                    {% for org_templates in orgs_templates[franchisee.organzation_id] %}
+                                                        <option value='{{org_templates.id}}'>{{org_templates.name}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <button class="btn btn--circle btn--small btn--secondary confirm-template small-margin-left">
+                                                    <span class="icon-check"></span>
+                                                </button>
+                                                <span class="icon-check text-success hidden"></span>
+                                                <div class="loading-dots loading-dots--secondary small-margin-left hidden" aria-label="Loading, please wait...">
+                                                    <span></span>
+                                                    <span></span>
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <div class="form-group__text select hidden">
+                                                <select>
+                                                    <option value="null">Select Template</option>
+                                                </select>
+                                                <button class="btn btn--circle btn--small btn--secondary confirm-template small-margin-left">
+                                                    <span class="icon-check"></span>
+                                                </button>
+                                                <span class="icon-check text-success hidden"></span>
+                                                <div class="loading-dots loading-dots--secondary small-margin-left hidden" aria-label="Loading, please wait...">
+                                                    <span></span>
+                                                    <span></span>
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr class="fold hidden">
+                                    <td colspan="7">
+                                        <div class="fold-content">
+                                            <div class="row">
+                                                {% if franchisee.organzation_id %}
+                                                    {% for model, serials in devices[franchisee.order_number]['models'].items() %}
+                                                        <div class="col-xl-3 col-md-3 col-3 base-margin-top base-margin-bottom">
+                                                            <div class="panel panel--bordered panel--raised panel--loose panel--white">
+                                                                <div class="subtitle text-center">{{model}} x {{serials|length}}</div>
+                                                                <div class="row text-center">
+                                                                    {% for serial in serials %}
+                                                                        <div class="col-xl-6 col-md-6 col-6 text-center"><small>{{serial}}</small></div>
+                                                                    {% endfor %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                     <!--CUSTOMIZE END-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+{%  endblock %}
